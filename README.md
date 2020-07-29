@@ -43,16 +43,36 @@ Now, try:
 ```sh
 python interface.py 
 ```
-you will see an interface that allow you to choose Knowledge Component and language version. Here are some typical KCs for trial:
+(Note: As we use online image retreival API and tranlation tool, it is required to run with internet connection.)
+
+
+You will see an interface that allow you to choose Knowledge Component and language version. Please choose KC, language version and retreival-or-not option before click the "generate" button.
+
+The first time you click generate, it may takes some time for the system to load the dependencies and word embeddings.
+Then you will find the text question, answers and image file directories in the three boxes.
+
+Here are some typical KCs for trial:
+
 Arithmetic Problem:
+
 KC 122:  add and sub under 20
+
 KC 173: Divide under 12
+
 KC 177: multiply under 100
+
 Number Sequence:
+
 KC 23: count and count back up to at least 100 with jumps of 2, 5 (the vijfvouden) and 10.
+
 Ratio:
+
 KC 286: simple relationship problems with a relationship table
+
 Percentage:
+
 KC 309: calculate the discount rate as the old and new prices are known
+
 Table and Chart:
+
 KC 621: organize and view data collection in an appropriate graphic representation (such as a table, line chart, picture, pie or bar chart)
