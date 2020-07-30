@@ -25,7 +25,8 @@ pip install -r requirements.txt
 
 ### Step 2: Download vectors and place them in /data
 
-For text generation, we use a small-size pre-trained word embeddings made from the text8 Wikipedia dump, and we already put it in the folder.
+For text generation, we could firstly use a small-size pre-trained word embeddings made from the text8 Wikipedia dump:
+(available at: https://drive.google.com/file/d/10Clmpo6_JOH-2JgT6oH9MiJDKycO1D-X/view?usp=sharing. )
 You can skip this step to test the generator on this small dataset.
 However, if a more accurate natural language generation model is needed, you need to download pre-trained word embeddings made from a larger wiki corpus:
 (available at:
