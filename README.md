@@ -22,7 +22,10 @@ To install the dependencies, run this in the application folder from the command
 ```sh
 pip install -r requirements.txt
 ```
-
+To process Dutch text, you also need to download a dutch corpus file using the following command:
+```sh
+python -m spacy download nl_core_news_md
+```
 ### Step 2: Download vectors and place them in /data
 
 For text generation, we use a small-size pre-trained word embeddings made from the text8 Wikipedia dump, and we already put it in the folder.
