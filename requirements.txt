@@ -7,7 +7,7 @@ matplotlib == 3.3.0
 prettytable == 0.7.2
 plotly == 4.8.1
 tracery == 0.1.1
-nltk == 3.4
+nltk == 3.4.5
 inflect == 4.1.0
 pattern == 3.6
 googletrans == 3.0.0
