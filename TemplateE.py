@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import random
 import matplotlib.patches as patches
+<<<<<<< HEAD
 from PIL import Image
 from PIL import ImageDraw
 import math
@@ -13,6 +14,17 @@ DIR = "grid_paper.png"
 LINE_NUM_X = 20
 LINE_NUM_Y = 15
 stack = []
+=======
+
+def kc_354():
+    # calculate the perimeter of a rectangle with the aid of the formula 2 x (l + b) or 2 x l + 2 x b
+    N = random.choice([10, 20])
+    #width = random.randint(1, N-2)
+    #height = random.randint(1, N-2)
+    width = 4
+    height = 2
+    return N, width, height
+>>>>>>> f5a48e54c6e4271f701e4908fefddc0d7a491ca5
 
 
 def show_grid(fig, N, width, height):
@@ -38,6 +50,7 @@ def show_grid(fig, N, width, height):
     plt.show()
 
 
+<<<<<<< HEAD
 def grid_paper(img_polygon, line_num):
     line_num_x, line_num_y = line_num[0], line_num[1]
     img_d = ImageDraw.Draw(img_polygon)
@@ -184,3 +197,10 @@ if __name__ == "__main__":
     #     text, img_dir = template_grid_paper(data, index)
     #     print(text, img_dir)
 
+=======
+if __name__ == "__main__":
+    N, width, height = kc_354()
+    fig = plt.figure()
+    show_grid(fig, N,  width, height)
+    print("width: ", width, "height: ", height, "perimeter: ", 2 * (width + height), "area: ", width * height)
+>>>>>>> f5a48e54c6e4271f701e4908fefddc0d7a491ca5

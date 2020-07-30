@@ -7,10 +7,18 @@ from interval import Interval
 from prettytable import PrettyTable
 from copy import deepcopy
 from text_templateGenerate import phead, database
+<<<<<<< HEAD
 from textGenerator import retreive_words, get_score, set_theme, set_num_constraints
 
 integers = ['object1', 'object2', 'gram', 'meter', 'liter', 'width', 'length', 'numerator', 'denominator', 'people', 'object', 'size', 'part', 'whole', 'container', 'amount', 'food', 'unit', 'ingredient', 'number', 'day', 'hour', 'minute', 'second', 'century', 'decade', 'year']
 
+=======
+from textGenerator import retreive_words, get_score, set_theme
+import pytab
+
+integers = ['object1', 'object2','price', 'unit', 'width', 'length', 'numerator', 'denominator', 'people', 'object', 'size', 'part', 'whole', 'container', 'amount', 'food', 'unit', 'ingredient', 'number', 'day', 'hour', 'minute', 'second', 'century', 'decade', 'year']
+replacable = ['object1', 'object2', 'food', 'ingredient']
+>>>>>>> f5a48e54c6e4271f701e4908fefddc0d7a491ca5
 
 def get_integer():
     x = random.randint(1, 10)
@@ -21,7 +29,11 @@ def get_integer():
 def get_decimal():
 
     x = random.uniform(1, 10)
+<<<<<<< HEAD
     return round(x, 1)
+=======
+    return round(x, 2)
+>>>>>>> f5a48e54c6e4271f701e4908fefddc0d7a491ca5
 
 
 def get_num(attr):
@@ -41,6 +53,7 @@ def addition_cal(row, note):
     res = ''
     if 'fraction' in note:
         res = str(Fraction(row[0], row[1]))
+<<<<<<< HEAD
     elif 'area' in note:
         res = (round(row[0] * row[1], 3))
     elif len(note) > 0:
@@ -122,13 +135,61 @@ def template_ratio_table(data, index):
     for i in range(num_attr):
         heading_line.append(str(table.cell_value(row_no, 1+i+table.row_values(0).index("Attributes"))))
         attr_list.append(str(table.cell_value(row_no, 1+i+table.row_values(0).index("Attributes"))))
+=======
+    elif 'total' in note:
+        res = str(round(row[0] * row[1], 3))
+    elif 'area' in note:
+        res = str(round(row[0] * row[1], 3))
+    elif len(note) > 0:
+        res = str(round(row[1]/row[0], 3))
+    return res
+
+
+def template_ratio_table(data, index):
+    table = data.sheets()[2]
+    # number of rows and cols
+    cols_num = table.ncols
+    index_row = table.row_values(0)
+    # print("first_row_values:", index_row)
+    kc_col_no = dc_col_no = attr_col_no = ratio_col_no = rnum_col_no = note_col_no = 0
+    for col_no in range(cols_num):
+        if 'Knowledge component' in index_row[col_no]:
+            kc_col_no = col_no
+        if 'Description' in index_row[col_no]:
+            dc_col_no = col_no
+        if 'Attribute' in index_row[col_no]:
+            attr_col_no = col_no
+        if 'Ratio' in index_row[col_no]:
+            ratio_col_no = col_no
+        if 'row' in index_row[col_no]:
+            rnum_col_no = col_no
+        if 'Note' in index_row[col_no]:
+            note_col_no = col_no
+    row_no = int(index)
+    kc_row_value = table.row_values(row_no)
+    kc_no = kc_row_value[kc_col_no]
+    kc_des = str(str(int(float(kc_no))) + " " + kc_row_value[dc_col_no])
+    num_attr = int(float(kc_row_value[attr_col_no]))
+    num_rows = int(float(kc_row_value[rnum_col_no]))
+    values = []
+    heading_line = []
+    attr_list = []
+    note = str(kc_row_value[note_col_no])
+    for i in range(num_attr):
+        heading_line.append(str(kc_row_value[attr_col_no+1+i]))
+        attr_list.append(str(kc_row_value[attr_col_no+1+i]))
+>>>>>>> f5a48e54c6e4271f701e4908fefddc0d7a491ca5
     if len(note) > 1:
         heading_line.append(note)
     ratio_list = []
     for i in range(len(heading_line)):
         values.append([])
     for i in range(num_attr-1):
+<<<<<<< HEAD
         ratio_list.append(str(table.cell_value(row_no, i + table.row_values(0).index("Ratios"))))
+=======
+        ratio_list.append(str(kc_row_value[ratio_col_no+i]))
+>>>>>>> f5a48e54c6e4271f701e4908fefddc0d7a491ca5
 
     # when the ratio is randomly generated
     if 'Interval' in ratio_list[0]:
@@ -188,7 +249,12 @@ def template_ratio_table(data, index):
             pre_line = column
             values[l+1] = column
             ratio_table.add_column(heading_line[l+1], column)
+<<<<<<< HEAD
 
+=======
+    print(ratio_table)
+    print(values)
+>>>>>>> f5a48e54c6e4271f701e4908fefddc0d7a491ca5
     replace_word_list = []
     is_replace = False
     for attr in attr_list:
@@ -205,14 +271,20 @@ def template_ratio_table(data, index):
             if 'object1' in head['story'] and 'object2' in head['story']:
                 head['set'] += '[#setclass#]'
             set_theme(head, 'N')
+<<<<<<< HEAD
             set_num_constraints(['euro'], head, [values[0][0], values[1][0]], ':')
             word_list = retreive_words(head)
             score, word_set = get_score([], word_list, replace_word_list)
+=======
+            word_list = retreive_words(head)
+            score = get_score([], word_list)
+>>>>>>> f5a48e54c6e4271f701e4908fefddc0d7a491ca5
             word_score.append(score)
             candidates.append(word_list)
         max_score_index = word_score.index(max(word_score))
         final_word_list = candidates[max_score_index]
         attr_list = final_word_list
+<<<<<<< HEAD
     if len(note) > 1:
         attr_list.append(note)
     for l in range(len(values)):
@@ -223,16 +295,46 @@ def template_ratio_table(data, index):
     img_dir = "ratio_table" + "\\" + "ratio_table_" + kc_id + ".png"
     fig.write_image(img_dir)
     return question, answer, img_dir
+=======
+
+    print("attributes: ", attr_list)
+    if len(note) > 1:
+        attr_list.append(note)
+    import plotly.graph_objects as go
+
+    fig = go.Figure(data=[go.Table(header=dict(values=attr_list),
+                                   cells=dict(values=values))
+                          ])
+
+    return kc_des, ratio_table, fig
+
+>>>>>>> f5a48e54c6e4271f701e4908fefddc0d7a491ca5
 
 
 if __name__ == "__main__":
     constraints_lib = xlrd.open_workbook("data\constraints.xlsx")
+<<<<<<< HEAD
     for index in range(3, 60):
         question, answer, img_dir = template_ratio_table(constraints_lib, index)
         print(question)
         print(answer)
         print(img_dir)
 
+=======
+    index = input("Please input KC ID:")
+    while index != '0':
+        kc_des, ratio_table,fig = template_ratio_table(constraints_lib, index)
+        dir = "table" + str(index) + ".png"
+        fig.write_image(dir)
+        from PIL import Image
+        import matplotlib.pyplot as plt
+
+        img = Image.open(dir)
+        plt.figure("fig")
+        plt.imshow(img)
+        plt.show()
+        index = input("Please input KC ID:")
+>>>>>>> f5a48e54c6e4271f701e4908fefddc0d7a491ca5
 
 
 

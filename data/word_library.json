@@ -22,6 +22,7 @@
 "cake": ["chocolate_cake","sponge_cake"],
 "cookie": ["chocolate_cookie", "vanilla_cookie", "ginger_cookie", "butter_cookie"],
 "flower": ["rose", "daisy", "lily", "tulip"],
+<<<<<<< HEAD
 "food": ["cake", "icecream","burger", "hotdog", "sandwich", "pizza", "pie"],
 "drink": ["lemonade", "orange juice", "juice","milkshake","strawberry milkshake", "blueberry milkshake", "passion fruit juice"],
 "ingredient": ["blueberry", "chocolate_bar","grams_of_butter","nut", "grams_of_sugar","ml_milk", "grams_of_flour"],
@@ -38,6 +39,23 @@
 "currency": ["euro"],
 "container": ["basket", "box", "bag", "gift_box", "shelf", "warehouse", "fridge", "bus"],
 "quantity_unit": ["glass", "piece"],
+=======
+"food": ["cake", "icecream","burger", "hotdog", "sandwich", "#drink#", "pizza"],
+"drink": ["lemonade", "orange juice", "juice","milkshake","strawberry milkshake", "blueberry milkshake", "passion fruit juice"],
+"ingredient": ["nut", "egg","#fruit#", "#vegetable#"],
+  "furniture": ["armchair", "cabinet", "desk", "lamp"],
+"obj_20": ["#fruit#", "#vegetable#","#food#", "#ingredient#","#obj_100#","#obj_1000#"],
+"obj_100": ["pencil", "#obj_1000#", "flower", "#flower#"],
+"obj_1000": ["cookie", "#cookie#","stamp", "ticket", "candy", "nut", "marble", "book"],
+"price_2": ["#fruit#", "#vegetable#"],
+  "price_10": ["cake", "burger", "hotdog", "sandwich", "pen", "pizza", "cup", "vase", "pillow", "book"],
+  "price_100": ["#furniture#", "coat", "backpack"],
+  "price_1000": ["coat", "guitar", "cellphone"],
+  "price_10000": ["sofa", "piano"],
+"currency": ["euro", "dollar", "krone"],
+"container": ["basket", "box", "bag", "gift_box", "classroom","shelf", "warehouse", "fridge", "kitchen", "bus"],
+"quantity_unit": ["glass", "piece", "cup"],
+>>>>>>> f5a48e54c6e4271f701e4908fefddc0d7a491ca5
 "walk": ["walk", "run", "stroll", "cycle"],
 "distance_unit": ["meter", "milliliter"],
 "vol_unit": ["liter", "kilometer"],
@@ -45,7 +63,10 @@
 "coloredobj": ["guitar", "chair", "crayon","chalk","shirt"],
 "setclass": ["[object_class: children][object1: #children#][object2: #children#][location: classroom, playground, bus]",
   "[object_class: fruit][object1: #fruit#][object2: #fruit#][location: #container#]",
+<<<<<<< HEAD
   "[object_class: cookie][object1: #cookie#][object2: #cookie#][location: #container#]",
+=======
+>>>>>>> f5a48e54c6e4271f701e4908fefddc0d7a491ca5
     "[object_class: flower][object1: #flower#][object2: #flower#][location: #container#]",
   "[obj: #coloredobj#][object_class: #obj#][object1: #color#_#obj#][object2: #color#_#obj#][location: warehouse, shop, store]"]
 }

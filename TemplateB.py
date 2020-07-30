@@ -4,7 +4,11 @@ from binary_expression_tree import *
 from fractions import Fraction
 from interval import Interval
 import datetime
+<<<<<<< HEAD
 language = 'en'
+=======
+
+>>>>>>> f5a48e54c6e4271f701e4908fefddc0d7a491ca5
 
 def get_integers(vType, num_in_total, vMin, vMax, vInterval):
     numbers = []
@@ -55,6 +59,7 @@ def get_decimals(vType, num_in_total, vMin, vMax, vInterval):
 def get_fractions(vType, num_in_total, vMin, vMax, vInterval):
     numbers = []
     n1, n2 = 1, 1
+<<<<<<< HEAD
     if vInterval == -1:
         for i in range(num_in_total):
             while Fraction(n1, n2) < vMin or Fraction(n1, n2) > vMax or Fraction(n1, n2) in numbers:
@@ -63,6 +68,10 @@ def get_fractions(vType, num_in_total, vMin, vMax, vInterval):
             numbers.append(Fraction(n1, n2))
     elif '.' in str(vInterval) or str(vInterval).isdigit():
         vInterval = int(float(vInterval))
+=======
+    if vInterval.isdigit():
+        vInterval = int(vInterval)
+>>>>>>> f5a48e54c6e4271f701e4908fefddc0d7a491ca5
         while n1 >= n2 or Fraction(n1, n2) < vMin or Fraction(n1, n2) > vMax or Fraction(n1, n2) in numbers:
             n1 = random.randint(1, 10)
             n2 = random.randint(1, 10)
@@ -78,6 +87,17 @@ def get_fractions(vType, num_in_total, vMin, vMax, vInterval):
         for i in range(num_in_total-1):
             numbers.append(Fraction(n1+1+i, n2))
 
+<<<<<<< HEAD
+=======
+    else:
+        for i in range(num_in_total):
+            while Fraction(n1, n2) < vMin or Fraction(n1, n2) > vMax or Fraction(n1, n2) in numbers:
+                n1 = random.randint(1, 10)
+                n2 = random.randint(1, 10)
+
+            numbers.append(Fraction(n1, n2))
+
+>>>>>>> f5a48e54c6e4271f701e4908fefddc0d7a491ca5
     numbers.sort()
     return numbers
 
@@ -248,6 +268,7 @@ def get_temperature(vType, num_in_total, vMin, vMax, vInterval):
     return tem_list
 
 
+<<<<<<< HEAD
 def text_question(question_type, vType, output):
     if question_type == "":
         return "", str(output)
@@ -353,34 +374,104 @@ def template_number_sequence(data, index, l):
             output.append(str(round(numbers[i])))
         if 'int' in value_type:
             value_type = "numbers"
+=======
+def template_number_sequence(data, index):
+    table = data.sheets()[1]
+    # number of rows and cols
+    cols_num = table.ncols
+    first_row_values = table.row_values(0)
+    kc_col_no = dc_col_no = vType_col_no = tol_col_no = range_col_no = inv_col_no = tp_col_no = 0
+    for col_no in range(cols_num):
+        if 'Knowledge component' in first_row_values[col_no]:
+            kc_col_no = col_no
+        if 'Discription' in first_row_values[col_no]:
+            dc_col_no = col_no
+        if 'Type' in first_row_values[col_no]:
+            vType_col_no = col_no
+        if 'Total' in first_row_values[col_no]:
+            tol_col_no = col_no
+        if 'range' in first_row_values[col_no]:
+            range_col_no = col_no
+        if 'Interval' in first_row_values[col_no]:
+            inv_col_no = col_no
+    row_no = int(index)
+    kc_row_value = table.row_values(row_no)
+    value_type = str(kc_row_value[vType_col_no])
+    num_in_total = int(float(kc_row_value[tol_col_no]))
+    min_value = str(kc_row_value[range_col_no])
+    max_value = str(kc_row_value[range_col_no + 1])
+    interval = str(kc_row_value[inv_col_no])
+    output = []
+    if 'decimal' in value_type:
+        if ('random' in interval) or ('/' in interval):
+            value_interval = -1
+        else:
+            value_interval = float(random.choice(eval(kc_row_value[inv_col_no])))
+        numbers = get_decimals(value_type, num_in_total, float(min_value), float(max_value), value_interval)
+        for i in range(len(numbers)):
+            output.append(str(numbers[i]))
+    elif 'fraction' in value_type:
+        if '[' in interval:
+            value_interval = str(random.choice(eval(kc_row_value[inv_col_no])))
+        else:
+            value_interval = interval
+        numbers = get_fractions(value_type, num_in_total, float(min_value), float(max_value), value_interval)
+        for i in range(len(numbers)):
+            output.append(str(numbers[i]))
+    elif ('int' in value_type) or ('object' in value_type):
+        if ('random' in interval) or ('/' in interval):
+            value_interval = -1
+        else:
+            value_interval = float(random.choice(eval(kc_row_value[inv_col_no])))
+        numbers = get_integers(value_type, num_in_total, int(float(min_value)), int(float(max_value)), value_interval)
+        for i in range(len(numbers)):
+            output.append(str(numbers[i]))
+>>>>>>> f5a48e54c6e4271f701e4908fefddc0d7a491ca5
     elif 'time' in value_type:
         time_list, interval_list = get_time(value_type, num_in_total, min_value, max_value, interval)
         for i in range(num_in_total):
             output.append(str('time: ' + str(time_list[i])))
         for i in range(num_in_total-1):
             output.append(str('time interval: ' + str(interval_list[i])))
+<<<<<<< HEAD
         value_type = "time values"
+=======
+>>>>>>> f5a48e54c6e4271f701e4908fefddc0d7a491ca5
     elif 'date' in value_type:
         date_list, interval_list = get_date(value_type, num_in_total, min_value, max_value, interval)
         for i in range(num_in_total):
             output.append(str('date: ' + str(date_list[i])))
         for i in range(num_in_total-1):
             output.append(str('date interval: ' + str(interval_list[i])))
+<<<<<<< HEAD
             value_type = "dates"
+=======
+>>>>>>> f5a48e54c6e4271f701e4908fefddc0d7a491ca5
     elif 'money' in value_type:
         if ('random' in interval) or ('/' in interval):
             value_interval = -1
         else:
+<<<<<<< HEAD
             value_interval = float(random.choice(eval(interval)))
         moneylist, unit = get_money(value_type, num_in_total, min_value, max_value, interval)
         for i in range(num_in_total):
             output.append(str(str(moneylist[i]) + str(unit)))
         value_type = "money values"
+=======
+            value_interval = float(random.choice(eval(kc_row_value[inv_col_no])))
+        moneylist, unit = get_money(value_type, num_in_total, min_value, max_value, interval)
+        for i in range(num_in_total):
+            output.append(str(str(moneylist[i]) + str(unit)))
+>>>>>>> f5a48e54c6e4271f701e4908fefddc0d7a491ca5
     elif 'content' in value_type:
         if ('random' in interval) or ('/' in interval):
             value_interval = -1
         else:
+<<<<<<< HEAD
             value_interval = float(random.choice(eval(interval)))
+=======
+            value_interval = float(random.choice(eval(kc_row_value[inv_col_no])))
+>>>>>>> f5a48e54c6e4271f701e4908fefddc0d7a491ca5
         contentlist, unit = get_content(value_type, num_in_total, min_value, max_value, interval)
         for i in range(num_in_total):
             output.append(str(str(contentlist[i]) + str(unit)))
@@ -388,7 +479,11 @@ def template_number_sequence(data, index, l):
         if ('random' in interval) or ('/' in interval):
             value_interval = -1
         else:
+<<<<<<< HEAD
             value_interval = float(random.choice(eval(interval)))
+=======
+            value_interval = float(random.choice(eval(kc_row_value[inv_col_no])))
+>>>>>>> f5a48e54c6e4271f701e4908fefddc0d7a491ca5
         weightlist, unit = get_weight(value_type, num_in_total, min_value, max_value, interval)
         for i in range(num_in_total):
             output.append(str(str(weightlist[i]) + str(unit)))
@@ -396,6 +491,7 @@ def template_number_sequence(data, index, l):
         if ('random' in interval) or ('/' in interval):
             value_interval = -1
         else:
+<<<<<<< HEAD
             value_interval = float(random.choice(eval(interval)))
         tem_list = get_temperature(value_type, num_in_total, min_value, max_value, interval)
         for i in range(num_in_total):
@@ -403,13 +499,23 @@ def template_number_sequence(data, index, l):
 
     question, answer = text_question(question_type, value_type, output)
     return kc_des, question, answer
+=======
+            value_interval = float(random.choice(eval(kc_row_value[inv_col_no])))
+        tem_list = get_temperature(value_type, num_in_total, min_value, max_value, interval)
+        for i in range(num_in_total):
+            output.append(str(str(tem_list[i]) + 'degree'))
+    return output
+>>>>>>> f5a48e54c6e4271f701e4908fefddc0d7a491ca5
     # if 'object' in vType:
     #     object = random.choice(['bin', 'mountain', 'pancake'])
     #     print("object: ", object)
 
 
+<<<<<<< HEAD
 if __name__ == "__main__":
     constraints_lib = xlrd.open_workbook("data\constraints.xlsx")
     for index in range(2, 112):
         kc_des, question, answer = template_number_sequence(constraints_lib, index)
         print(kc_des, '\n', "Question: ", question, '\n', "Answer: ", answer)
+=======
+>>>>>>> f5a48e54c6e4271f701e4908fefddc0d7a491ca5
