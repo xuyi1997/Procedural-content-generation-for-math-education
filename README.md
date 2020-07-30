@@ -36,6 +36,11 @@ then put them in the data folder, and modify the following code in file "textGen
 ```sh
 w2v = Embeddings.load("data\\vecs.npy")
 ```
+### Step 3: Fill out the API Key for image retrieval
+
+For image retreiving, we use the key words in the generated text as searching query, pull the relevant iamges from GettyImages API.
+You need to fill out the apiconfig_example.py with the confidencial info. 
+Then save the file as apiconfig.py
 
 ### Step 3: Run
 
