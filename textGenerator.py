@@ -390,11 +390,12 @@ def get_score(relation_words, original_word_list, replace_word_list):
 
 
 def entry(operands, operator, l, i):
-    global language, is_retrieve_img
+    global language, is_retrieve_img, facts_lib
     language = l
     is_retrieve_img = i
-    if language == 'nl':
-        global facts_lib
+    if language == 'en':
+        facts_lib = xlrd.open_workbook("data\Facts_library_en.xlsx")
+    if language == 'nl':        
         facts_lib = xlrd.open_workbook("data\Facts_library_nl.xlsx")
     from imageGenerator import image_generator, image_splice
     word_list = []
