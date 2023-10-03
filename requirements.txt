@@ -2,7 +2,7 @@
 numpy==1.19.1
 interval == 1.0.0
 xlrd == 1.2.0
-Pillow == 7.2.0
+Pillow == 10.0.1
 matplotlib == 3.3.0
 prettytable == 0.7.2
 plotly == 4.8.1
